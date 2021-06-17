@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="UtilityWpf.DemoAppCore.LogUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:view="clr-namespace:UtilityWpf.View;assembly=UtilityWpf.ViewCore"
+             xmlns:local="clr-namespace:UtilityWpf.DemoAppCore"
+             mc:Ignorable="d"
+           
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Name="Grid1">
+        <Grid.DataContext>
+            <local:LogViewModel></local:LogViewModel>
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel    Grid.Row="0" Orientation="Horizontal"  >
+            <Label Content="Species" HorizontalAlignment="Right"></Label>
+            <TextBox Width="400"
+                x:Name="speciesTextBox"
+                Text="{Binding Species}"
+            />
+        </StackPanel>
+        <StackPanel    Grid.Row="1" Orientation="Horizontal" >
+            <Label Content="Location" HorizontalAlignment="Right"></Label>
+            <TextBox Width="400"
+                     x:Name="locationTextBox"
+                     Grid.Row="1"
+                     Text="{Binding Location}"
+            />
+        </StackPanel>
+
+        <UniformGrid    Grid.Row="2" Rows="1" Margin="30">
+            <Button
+            x:Name="logButton"
+            Command="{Binding LogCommand}"
+            Content="Log"/>
+
+            <Button
+            x:Name="aopButton"
+            Command="{Binding RunAspectMethodCommand}"
+            Content="Run Aspect Method"/>
+        </UniformGrid>
+
+        <view:LogViewer     Grid.Row="3"></view:LogViewer>
+    </Grid>
+</UserControl>

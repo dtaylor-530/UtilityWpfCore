@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="UtilityWpf.View.NotificationUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UtilityWpf.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+        <Grid x:Name="Grid1" Height="100" Width="300">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Grid.ColumnSpan="3" Grid.RowSpan="2"  Background="GhostWhite" CornerRadius="20"/>
+            <Path Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Margin="0,15,0,0" Width="30" Height="30" Stretch="Uniform" Fill="BlueViolet"
+                  Data="M 263,99 263,115 113,115 Q 87,115 87,139 L 87,315 Q 87,340 113,340 L 287,340 Q 311,340 311,315 L 311,221 327,221 327,315 Q 327,355 287,355 L 113,355 Q 73,355 73,315 L 73,139 Q 73,99 113,99 Z M 186,323 105,238 143,195 186,240,351,68 391,112 Z"/>
+
+            <TextBlock x:Name="MessageBox1" VerticalAlignment="Center" Text="Message"   Grid.Row="0" Grid.Column="1" Margin="10"  HorizontalAlignment="Left" TextWrapping="Wrap"/>
+
+
+
+            <UniformGrid Columns="2" Name="PART_PanelMore" Grid.Row="1" Grid.ColumnSpan="3" Height="28" Grid.Column="0">
+                <Button  HorizontalAlignment="Stretch" Background="Transparent"  BorderBrush="Transparent" Click="ButtonBase_OnClickCancel">
+                    <TextBlock Text="Cancel" HorizontalAlignment="Center"  FontWeight="DemiBold" Foreground="Red"/>
+                </Button>
+                <Button  HorizontalAlignment="Stretch" Background="Transparent" BorderBrush="Transparent" Click="ButtonBase_OnClickConfirm">
+                    <TextBlock Text="Confirm" FontWeight="DemiBold" HorizontalAlignment="Center"  Foreground="DarkSlateGray"/>
+                </Button>
+            </UniformGrid>
+        </Grid>
+
+ 
+</UserControl>

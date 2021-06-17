@@ -72,14 +72,10 @@
                         myPath.Data = myEllipseGeometry;
                     -->
 
-                    <Path x:Name="PART_MovingObject" Fill="IndianRed">
-                        <Path.Margin>
-                            <Thickness
-                                Bottom="15"
-                                Left="15"
-                                Right="15"
-                                Top="15" />
-                        </Path.Margin>
+                    <Path Fill="IndianRed" x:Name="PART_MovingObject">
+                        <!--<Path.Margin>
+                            <Thickness Bottom="15" Left="15" Right="15" Top="15"/>
+                        </Path.Margin>-->
                         <!--<Path.Data>
                             <EllipseGeometry RadiusX="15" RadiusY="15">
                                 <EllipseGeometry.Center>

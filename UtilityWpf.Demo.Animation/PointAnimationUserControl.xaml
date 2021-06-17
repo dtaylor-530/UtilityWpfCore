@@ -11,24 +11,21 @@
     <StackPanel>
         <Button Click="Button_Click">Animate</Button>
         <Grid
-            Width="600"
-            Height="300"
+        
             Background="Gray">
-            <Canvas
-                x:Name="Canvas1"
-                Margin="10"
-                Background="GhostWhite" />
-        </Grid>
-        <Grid
-            Width="600"
-            Height="300"
-            Background="Gray">
-            <Canvas Margin="10" Background="GhostWhite">
+            <Canvas Margin="10" Background="GhostWhite" x:Name="Canvas1"     Width="600"
+                    Height="300">
                 <animation:PointControl x:Name="PointControl1">
                     <animation:PointControl.Point>
                         <Point X="100" Y="100" />
                     </animation:PointControl.Point>
                 </animation:PointControl>
+                <animation:TravellerControl x:Name="TravellerControl1">
+                  
+                </animation:TravellerControl>              
+                <animation:TravellerControl x:Name="TravellerControl2">
+                  
+                </animation:TravellerControl>
             </Canvas>
         </Grid>
     </StackPanel>

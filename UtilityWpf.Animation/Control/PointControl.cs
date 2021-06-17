@@ -5,52 +5,66 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace UtilityWpf.Animation
-{
-    public class PointControl : Control
-    {
-        static PointControl()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(PointControl), new FrameworkPropertyMetadata(typeof(PointControl)));
-        }
+namespace UtilityWpf.Animation {
 
-        public PointControl()
-        {
-        }
+   public class PointControl : ContentControl {
 
-        private Path rctMovingObject;
+      private EllipseGeometry myEllipseGeometry;
+      public static readonly DependencyProperty PointProperty = DependencyProperty.Register("Point", typeof(Point), typeof(PointControl), new PropertyMetadata(default(Point), Changed));
+      public static readonly DependencyProperty DurationProperty = DependencyProperty.Register("Duration", typeof(TimeSpan), typeof(PointControl), new PropertyMetadata(TimeSpan.FromSeconds(2)));
+      public static readonly DependencyProperty RadiusYProperty = DependencyProperty.Register("RadiusY", typeof(double), typeof(PointControl), new PropertyMetadata(5d));
+      public static readonly DependencyProperty RadiusXProperty = DependencyProperty.Register("RadiusX", typeof(double), typeof(PointControl), new PropertyMetadata(5d));
 
-        public override void OnApplyTemplate()
-        {
-            rctMovingObject = this.GetTemplateChild("PART_MovingObject") as Path;
-            var myEllipseGeometry = new EllipseGeometry();
-            myEllipseGeometry.Center = new Point(100, 50);
-            myEllipseGeometry.RadiusX = 15;
-            myEllipseGeometry.RadiusY = 15;
-            rctMovingObject.Data = myEllipseGeometry;
-        }
 
-        public Point Point
-        {
-            get { return (Point)GetValue(PointProperty); }
-            set { SetValue(PointProperty, value); }
-        }
 
-        public static readonly DependencyProperty PointProperty = DependencyProperty.Register("Point", typeof(Point), typeof(PointControl), new PropertyMetadata(default(Point), BeatChanged));
+      static PointControl() {
+      }
 
-        private static void BeatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            PointControl bc = d as PointControl;
+      public PointControl() { 
+         myEllipseGeometry = new EllipseGeometry { RadiusX = RadiusX, RadiusY = RadiusY };
+      }
 
-            PointAnimation myPointAnimation = new PointAnimation
-            {
-                Duration = TimeSpan.FromSeconds(2),
-                From = (Point)e.OldValue,
-                To = (Point)e.NewValue
-            };
+      public override void OnApplyTemplate()
+      {
+         myEllipseGeometry.RadiusX = RadiusX;
+         myEllipseGeometry.RadiusY = RadiusY;
+         var myPath = new Path { Fill = Foreground, Data = myEllipseGeometry };
+         this.Content = myPath;
+      }
 
-            (bc.rctMovingObject?.Data as EllipseGeometry)?
-                .BeginAnimation(EllipseGeometry.CenterProperty, myPointAnimation);
-        }
-    }
+      public Point Point {
+         get => (Point)GetValue(PointProperty);
+         set => SetValue(PointProperty, value);
+      }
+
+      public TimeSpan Duration {
+         get => (TimeSpan)GetValue(DurationProperty);
+         set => SetValue(DurationProperty, value);
+      }
+
+      public double RadiusX {
+         get => (double)GetValue(RadiusXProperty);
+         set => SetValue(RadiusXProperty, value);
+      }
+
+      public double RadiusY {
+         get => (double)GetValue(RadiusYProperty);
+         set => SetValue(RadiusYProperty, value);
+      }
+
+      private static void Changed(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+
+         if (!(d is PointControl pointControl))
+            return;
+
+         PointAnimation myPointAnimation = new PointAnimation {
+            Duration = pointControl.Duration,
+            From = (Point)e.OldValue,
+            To = (Point)e.NewValue
+         };
+
+         pointControl.myEllipseGeometry.BeginAnimation(EllipseGeometry.CenterProperty, myPointAnimation);
+      }
+   }
 }
+

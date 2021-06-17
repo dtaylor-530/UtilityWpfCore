@@ -23,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BFF.DataVirtualizingCollection" Version="2.0.2" />
+    <PackageReference Include="MrAdvice" Version="2.8.10" />
+    <PackageReference Include="ReactiveUI.WPF" Version="11.0.1" />
     <PackageReference Include="AutoBogus" Version="2.12.0" />
     <PackageReference Include="BFF.DataVirtualizingCollection" Version="3.0.8" />
     <PackageReference Include="ControlzEx" Version="4.4.0" />
@@ -37,6 +40,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UtilityWpf.Chart\UtilityWpf.Chart.csproj" />
     <ProjectReference Include="..\UtilityWpf.ViewModel\UtilityWpf.ViewModel.csproj" />
+    <ProjectReference Include="..\UtilityWpf\UtilityWpf.csproj" />
   </ItemGroup>
 
   <ItemGroup>
